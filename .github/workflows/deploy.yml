@@ -17,14 +17,12 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
+      - run: npm ci
+      - run: npm test
 
       - name: Install dependencies
         run: npm install
-      
-      - name: fix permissions
-        run: sudo find . -path ./node_modules -prune -o -type f -print -exec chmod 644 {} \; && sudo find . -path ./node_modules -prune -o -type d -print -exec chmod 755 {} \;
-
 
       - name: Build the site
         run: npm run build
